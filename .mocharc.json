@@ -1,0 +1,9 @@
+{
+    "spec": [
+        "test/**/*"
+    ],
+    "require": [
+        "ts-node/register"
+    ],
+    "timeout": 30000
+}
