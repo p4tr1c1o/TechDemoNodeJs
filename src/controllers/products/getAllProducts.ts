@@ -1,11 +1,11 @@
 import Product from "../../models/product"
 
 
-function getAllProducts(request, response, next) {
+async function getAllProducts(request, response, next) {
 
 	try {
 
-		const result = Product.findAll()
+		const result = await Product.findAll()
 
 		return response.status(200).json(result)
 

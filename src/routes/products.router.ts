@@ -1,14 +1,13 @@
 import { Router } from "express"
 import getAllProducts from "../controllers/products/getAllProducts"
-import getProduct from "../controllers/products/getProduct"
-import postProduct from "../controllers/products/postProduct"
-import postProductValidator from "../controllers/products/postProduct.validator"
+// import getProduct from "../controllers/products/getProduct"
+// import postProduct from "../controllers/products/postProduct"
+// import postProductValidator from "../controllers/products/postProduct.validator"
 
-const router = Router()
+const productRouter = Router()
 
-router.route("/products")
-router.get("/", getAllProducts)
-router.get("/:id", getProduct)
-router.post("/", postProductValidator, postProduct)
+productRouter.get("/products", getAllProducts)
+// productRouter.get("/products/:id", getProduct)
+// productRouter.post("/productxxs", postProductValidator, postProduct)
 
-export default router
+export default productRouter

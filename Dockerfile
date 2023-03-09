@@ -10,8 +10,7 @@ FROM node:18.13.0
 WORKDIR /app
 EXPOSE 3000
 
-COPY --from=build /app/dist /app/package.json /app/package-lock.json /app/.env ./
+COPY --from=build /app/dist ./
 RUN npm ci --omit=dev
 
 CMD [ "node", "src/server.js" ]
-
