@@ -4,7 +4,7 @@ import { cleanEnv, str } from "envalid"
 import swaggerUi from "swagger-ui-express"
 import cors from "cors"
 import ErrorHandler from "./middlewares/errorHandler"
-import swaggerFile from "./swagger_output.json" assert { type: "json" }
+import swaggerFile from "./swagger_output.json"
 import productRouter from "./routes/products.router"
 
 export const environment = cleanEnv(process.env, {

@@ -12,8 +12,9 @@ describe("Having this fixture", () => {
 			chai.request(server)
 				.get("/products")
 				.end((err, res) => {
-					expect(res).to.have.status(200)
+
 					console.log(res)
+					expect(res).to.have.status(200)
 
 					// expect(res.body).to.be.an("array")
 					// expect(res.body).to.have.length(3)

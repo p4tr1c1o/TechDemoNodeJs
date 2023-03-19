@@ -1,13 +1,14 @@
 {
+	"extension": [
+		"ts"
+	],
 	"spec": [
 		"test/**/*"
 	],
+	"recursive": true,
 	"require": [
 		"ts-node/register"
 	],
-	"node-option": [
-		"experimental-specifier-resolution=node",
-		"loader=ts-node/esm"
-	],
-	"timeout": 20000
+	"timeout": 20000,
+	"exit": true
 }
