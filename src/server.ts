@@ -23,6 +23,6 @@ sync().then(
 )
 
 
-const server = app.listen("3000", () => console.log("Listening on 3000"))
+const server = app().server
 
 export default server

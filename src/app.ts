@@ -14,24 +14,32 @@ export const environment = cleanEnv(process.env, {
 	}),
 })
 
-const app = express()
+const appFactory = () => {
+
+	const app = express()
 
 
-if (!environment.isTest) app.use(logger("dev"))
+	// if (!environment.isTest) app.use(logger("dev"))
+	app.use(logger("dev"))
+	app.use(express.json())
+	app.use(cors())
 
-app.use(express.json())
-app.use(cors())
+	app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile))
+	app.use(productRouter)
 
-app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile))
-app.use(productRouter)
+	// 404
+	app.use(function (req, res, next) {
+		const error = new Error("Not Found")
+		next(error)
+	})
 
-// 404
-app.use(function (req, res, next) {
-	const error = new Error("Not Foundx")
-	next(error)
-})
+	app.use(ErrorHandler)
 
-app.use(ErrorHandler)
+	return {
+		server: app.listen("3000").on("listening", () => console.log("Listening on 3000")),
+		app
+	}
 
+}
 
-export default app
+export default appFactory
