@@ -1,13 +1,13 @@
 import Product from "../../models/product"
 
 
-function getProduct(request, response, next) {
+async function getProduct(request, response, next) {
 
 	try {
 
-		const result = Product.findOne({
+		const result = await Product.findOne({
 			where: {
-				id: request.param.id
+				id: request.params.id
 			}
 		})
 
@@ -16,7 +16,7 @@ function getProduct(request, response, next) {
 		return response.status(200).json(result)
 
 	} catch (error) {
-		next()
+		next(error)
 	}
 }
 
