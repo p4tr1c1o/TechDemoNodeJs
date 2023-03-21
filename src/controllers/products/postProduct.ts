@@ -1,6 +1,6 @@
 import Product from "../../models/product"
 
-async function postProduct(response, request, next) {
+async function postProduct(request, response, next) {
 
 	try {
 		const { name, description, price } = request.body
@@ -12,7 +12,7 @@ async function postProduct(response, request, next) {
 		return response.status(201).json(newProduct)
 
 	} catch (error) {
-		next()
+		next(error)
 	}
 }
 

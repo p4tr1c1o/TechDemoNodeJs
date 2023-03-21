@@ -3,7 +3,7 @@ import logger from "morgan"
 import { cleanEnv, str } from "envalid"
 import swaggerUi from "swagger-ui-express"
 import cors from "cors"
-import ErrorHandler from "./middlewares/errorHandler"
+import errorHandler from "./middlewares/errorHandler"
 import swaggerFile from "./swagger_output.json"
 import productRouter from "./routes/products.router"
 
@@ -28,12 +28,13 @@ const appFactory = () => {
 	app.use(productRouter)
 
 	// 404
-	app.use(function (req, res, next) {
-		const error = new Error("Not Found")
-		next(error)
+	app.use(function (_req, res) {
+		res.sendStatus(404)
 	})
 
-	app.use(ErrorHandler)
+	app.use((error, _request, response, _next) => {
+		errorHandler(error, response)
+	})
 
 	return {
 		server: app.listen("3000").on("listening", () => console.log("Listening on 3000")),

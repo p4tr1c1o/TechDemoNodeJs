@@ -41,8 +41,7 @@ describe("Having this fixture", () => {
 
 					// console.log(err)
 					expect(response).to.have.status(200)
-					expect(response.body).to.be.an("array")
-					expect(response.body).to.have.length(2)
+					expect(response.body).to.be.an("array").that.has.length(2)
 					done()
 				})
 		})
@@ -55,8 +54,26 @@ describe("Having this fixture", () => {
 
 					expect(response).to.have.status(200)
 					expect(response).to.have.a.property("body")
-					expect(response.body.id).to.be.equal(1)
-					expect(response.body.name).to.be.equal(firstProduct.name)
+					expect(response.body).to.be.deep.equal({ id: 1, ...firstProduct })
+					done()
+				})
+
+		})
+	})
+
+	describe("POST /products Fanta", () => {
+		it("should return a Fanta with id", (done) => {
+
+			agent.post("/products")
+				.send({
+					name: "Fanta",
+					description: "Rica y divertida",
+					price: 250
+				})
+				.end((error, response) => {
+					expect(response).to.have.status(201)
+					console.log(response.body)
+					// expect(response.doby)
 					done()
 				})
 
