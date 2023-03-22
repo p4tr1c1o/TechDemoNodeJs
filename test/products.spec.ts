@@ -62,7 +62,7 @@ describe("Having this fixture", () => {
 	})
 
 	describe("POST /products Fanta", () => {
-		it("should return a Fanta with id", (done) => {
+		it("should return a Fanta with id 3", (done) => {
 
 			agent.post("/products")
 				.send({
@@ -77,6 +77,22 @@ describe("Having this fixture", () => {
 					done()
 				})
 
+		})
+	})
+
+	describe("PUT /products Coke", () => {
+		it("should update CocaCola with name:Coke", (done) => {
+
+			agent.put("/products")
+				.send({
+					id: 1,
+					name: "Coke"
+				})
+				.end((error, response) => {
+					expect(response).to.have.status(200)
+					expect(response.body).to.have.property("name").equal("Coke")
+					done()
+				})
 		})
 	})
 }) 
