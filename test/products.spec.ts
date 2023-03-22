@@ -80,7 +80,7 @@ describe("Having this fixture", () => {
 		})
 	})
 
-	describe("PUT /products Coke", () => {
+	describe("PUT /products name:Coke", () => {
 		it("should update CocaCola with name:Coke", (done) => {
 
 			agent.put("/products")

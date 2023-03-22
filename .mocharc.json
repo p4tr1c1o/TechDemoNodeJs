@@ -3,7 +3,7 @@
 		"ts"
 	],
 	"spec": [
-		"test/**/*"
+		"test"
 	],
 	"recursive": true,
 	"require": [
